@@ -1,0 +1,98 @@
+{
+  "audit": "phase0_data_feasibility",
+  "generated_at_utc": "2026-08-31T22:19:51.464519+00:00",
+  "writes_to_external_systems": false,
+  "private_keys_used": false,
+  "kuru": {
+    "health": {
+      "ok": true,
+      "http_status": 200,
+      "data": {
+        "status": "ok"
+      }
+    },
+    "MON_USDC_books": {
+      "proposed": {
+        "ok": true,
+        "http_status": 200,
+        "lastUpdateId": 100873491,
+        "event_time_ms": 1788214791000,
+        "block_time_s": 1788214791,
+        "bid_levels": 20,
+        "ask_levels": 20,
+        "best_bid": "26483000000000000",
+        "best_ask": "26484000000000000"
+      },
+      "voted": {
+        "ok": true,
+        "http_status": 200,
+        "lastUpdateId": 100873491,
+        "event_time_ms": 1788214791000,
+        "block_time_s": 1788214791,
+        "bid_levels": 20,
+        "ask_levels": 20,
+        "best_bid": "26483000000000000",
+        "best_ask": "26484000000000000"
+      },
+      "finalized": {
+        "ok": true,
+        "http_status": 200,
+        "lastUpdateId": 100873490,
+        "event_time_ms": 1788214791000,
+        "block_time_s": 1788214791,
+        "bid_levels": 20,
+        "ask_levels": 20,
+        "best_bid": "26483000000000000",
+        "best_ask": "26484000000000000"
+      },
+      "committed": {
+        "ok": true,
+        "http_status": 200,
+        "lastUpdateId": 100873491,
+        "event_time_ms": 1788214791000,
+        "block_time_s": 1788214791,
+        "bid_levels": 20,
+        "ask_levels": 20,
+        "best_bid": "26483000000000000",
+        "best_ask": "26484000000000000"
+      }
+    },
+    "ticker": {
+      "ok": true,
+      "http_status": 200,
+      "data": {
+        "symbol": "MON_USDC",
+        "priceChange": "-1101000000000000.00000000",
+        "priceChangePercent": "-3.99",
+        "lastPrice": "26483000000000000",
+        "bidPrice": "26483000000000000",
+        "askPrice": "26484000000000000",
+        "openPrice": "27584000000000000",
+        "highPrice": "27758000000000000",
+        "lowPrice": "26136000000000000",
+        "volume": "10330094780326301712",
+        "quoteVolume": "275438022123245851767842000000000000",
+        "openTime": 1788128394031,
+        "closeTime": 1788214794031,
+        "count": 72660
+      }
+    }
+  },
+  "coinbase": {
+    "MON-USD": {
+      "ok": true,
+      "http_status": 200,
+      "sequence": 1027423414,
+      "bid_levels": 581,
+      "ask_levels": 631,
+      "best_bid": "0.026468",
+      "best_ask": "0.026483"
+    }
+  },
+  "gate": {
+    "kuru_health": true,
+    "kuru_MON_USDC_all_four_states": true,
+    "coinbase_MON_USD_l2": true,
+    "overall": "PASS"
+  }
+}

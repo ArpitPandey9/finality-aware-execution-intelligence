@@ -6,6 +6,13 @@ import hashlib
 import json
 from pathlib import Path
 
+from finality_intelligence.metrics import (
+    midpoint,
+    reference_mid_difference,
+    reference_mid_difference_bps,
+    spread,
+    spread_bps,
+)
 from finality_intelligence.normalization import (
     normalize_kuru_price,
     normalize_kuru_size,
@@ -179,6 +186,102 @@ def add_coinbase(
     row["coinbase_best_ask_size"] = ask_qty
 
 
+def add_market_metrics(row: dict) -> None:
+    for state in KURU_STATES:
+        prefix = f"kuru_{state}"
+
+        bid = row.get(
+            f"{prefix}_best_bid"
+        )
+        ask = row.get(
+            f"{prefix}_best_ask"
+        )
+
+        if bid is None or ask is None:
+            continue
+
+        market_mid = midpoint(
+            bid,
+            ask,
+        )
+
+        row[f"{prefix}_mid"] = decimal_text(
+            market_mid
+        )
+        row[f"{prefix}_spread"] = decimal_text(
+            spread(
+                bid,
+                ask,
+            )
+        )
+        row[f"{prefix}_spread_bps"] = decimal_text(
+            spread_bps(
+                bid,
+                ask,
+            )
+        )
+
+    coinbase_bid = row.get(
+        "coinbase_best_bid"
+    )
+    coinbase_ask = row.get(
+        "coinbase_best_ask"
+    )
+
+    if (
+        coinbase_bid is None
+        or coinbase_ask is None
+    ):
+        return
+
+    coinbase_mid = midpoint(
+        coinbase_bid,
+        coinbase_ask,
+    )
+
+    row["coinbase_mid"] = decimal_text(
+        coinbase_mid
+    )
+    row["coinbase_spread"] = decimal_text(
+        spread(
+            coinbase_bid,
+            coinbase_ask,
+        )
+    )
+    row["coinbase_spread_bps"] = decimal_text(
+        spread_bps(
+            coinbase_bid,
+            coinbase_ask,
+        )
+    )
+
+    for state in KURU_STATES:
+        kuru_mid = row.get(
+            f"kuru_{state}_mid"
+        )
+
+        if kuru_mid is None:
+            continue
+
+        prefix = (
+            f"kuru_{state}_vs_coinbase_reference"
+        )
+
+        row[f"{prefix}_mid_diff"] = decimal_text(
+            reference_mid_difference(
+                kuru_mid,
+                coinbase_mid,
+            )
+        )
+
+        row[f"{prefix}_mid_diff_bps"] = decimal_text(
+            reference_mid_difference_bps(
+                kuru_mid,
+                coinbase_mid,
+            )
+        )
+
+
 def build_row(observation: dict) -> dict:
     json_path = Path(observation["raw_json"])
     hash_path = Path(observation["sha256_file"])
@@ -218,6 +321,8 @@ def build_row(observation: dict) -> dict:
         row,
         capture["coinbase"]["MON-USD"],
     )
+
+    add_market_metrics(row)
 
     blocks = [
         row.get(f"kuru_{state}_block")

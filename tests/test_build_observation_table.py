@@ -214,6 +214,28 @@ class TestObservationTable(unittest.TestCase):
                 500,
             )
 
+            self.assertEqual(
+                row["kuru_proposed_mid"],
+                "0.0251865",
+            )
+
+            self.assertEqual(
+                row["kuru_proposed_spread"],
+                "0.000005",
+            )
+
+            self.assertEqual(
+                row["coinbase_mid"],
+                "0.025185",
+            )
+
+            self.assertEqual(
+                row[
+                    "kuru_proposed_vs_coinbase_reference_mid_diff"
+                ],
+                "0.0000015",
+            )
+
     def test_write_csv_creates_readable_table(self):
         rows = [
             {

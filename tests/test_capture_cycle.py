@@ -193,7 +193,17 @@ class TestCaptureCycle(unittest.TestCase):
 
         self.assertEqual(
             result["schema_version"],
-            "phase0.capture_cycle.v1",
+            "phase0.capture_cycle.v2",
+        )
+
+        self.assertEqual(
+            result["capture_mode"],
+            "concurrent_thread_pool",
+        )
+
+        self.assertEqual(
+            result["request_count"],
+            5,
         )
 
 

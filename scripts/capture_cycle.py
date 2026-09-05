@@ -4,6 +4,7 @@ import hashlib
 import json
 import sys
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -58,19 +59,43 @@ def get_json(url: str) -> dict:
 def capture_cycle() -> dict:
     cycle_started = utc_now()
 
-    kuru_books = {}
+    request_urls = {
+        **{
+            f"kuru:{state}": (
+                "https://exchange.kuru.io/api/v3/depth"
+                f"?symbol=MON_USDC&limit=20&state={state}"
+            )
+            for state in KURU_STATES
+        },
+        "coinbase:MON-USD": (
+            "https://api.exchange.coinbase.com/"
+            "products/MON-USD/book?level=2"
+        ),
+    }
 
-    for state in KURU_STATES:
-        url = (
-            "https://exchange.kuru.io/api/v3/depth"
-            f"?symbol=MON_USDC&limit=20&state={state}"
-        )
-        kuru_books[state] = get_json(url)
+    responses = {}
 
-    coinbase = get_json(
-        "https://api.exchange.coinbase.com/"
-        "products/MON-USD/book?level=2"
-    )
+    with ThreadPoolExecutor(
+        max_workers=len(request_urls)
+    ) as executor:
+        future_to_key = {
+            executor.submit(
+                get_json,
+                url,
+            ): key
+            for key, url in request_urls.items()
+        }
+
+        for future in as_completed(future_to_key):
+            key = future_to_key[future]
+            responses[key] = future.result()
+
+    kuru_books = {
+        state: responses[f"kuru:{state}"]
+        for state in KURU_STATES
+    }
+
+    coinbase = responses["coinbase:MON-USD"]
 
     cycle_completed = utc_now()
 
@@ -82,7 +107,9 @@ def capture_cycle() -> dict:
     coinbase_ok = coinbase.get("ok") is True
 
     return {
-        "schema_version": "phase0.capture_cycle.v1",
+        "schema_version": "phase0.capture_cycle.v2",
+        "capture_mode": "concurrent_thread_pool",
+        "request_count": len(request_urls),
         "capture_cycle_started_utc": cycle_started,
         "capture_cycle_completed_utc": cycle_completed,
         "writes_to_external_systems": False,
@@ -107,7 +134,6 @@ def capture_cycle() -> dict:
             ),
         },
     }
-
 
 def write_capture(capture: dict) -> tuple[Path, Path]:
     output_dir = Path("data/raw")
@@ -142,6 +168,10 @@ def write_capture(capture: dict) -> tuple[Path, Path]:
 
 
 def print_summary(capture: dict) -> None:
+    print(
+        "capture_mode:",
+        capture.get("capture_mode"),
+    )
     print(
         "cycle_started:",
         capture["capture_cycle_started_utc"],

@@ -1,0 +1,551 @@
+{
+  "aggregation": {
+    "capture_count": 5,
+    "captured_messages_total": 6159,
+    "claim_boundary": {
+      "U_is_observed_grouping_field_only": true,
+      "captures_are_not_assumed_independent": true,
+      "latencies_are_client_observed": true,
+      "pooled_rates_are_descriptive_only": true
+    },
+    "cross_capture": {
+      "price": {
+        "capture_level_later_progression_rate": {
+          "count": 5,
+          "max": 0.1506849315068493,
+          "mean": 0.10025272039988732,
+          "median": 0.12195121951219512,
+          "min": 0.03529411764705882
+        },
+        "capture_level_ordered_rate": {
+          "count": 5,
+          "max": 0.7671232876712328,
+          "mean": 0.7014588782686108,
+          "median": 0.72,
+          "min": 0.5481481481481482
+        },
+        "descriptive_pooled_latency_ms": {
+          "committed": {
+            "count": 45,
+            "max": 1130.64,
+            "mean": 412.09926666666667,
+            "median": 383.701,
+            "min": 104.07600000000001
+          },
+          "finalized": {
+            "count": 45,
+            "max": 1130.64,
+            "mean": 412.09926666666667,
+            "median": 383.701,
+            "min": 104.07600000000001
+          },
+          "voted": {
+            "count": 45,
+            "max": 391.916,
+            "mean": 134.85866666666666,
+            "median": 112.447,
+            "min": 0.0
+          }
+        },
+        "descriptive_pooled_totals": {
+          "evaluable_episodes": 425,
+          "evaluable_later_progressions": 45,
+          "evaluable_not_observed": 136,
+          "evaluable_ordered": 289,
+          "later_progression_rate": 0.10588235294117647,
+          "ordered_rate": 0.68,
+          "proposed_episodes": 3847,
+          "reentry_ambiguous_episodes": 3404,
+          "unique_proposed_keys": 1758
+        }
+      },
+      "price_quantity": {
+        "capture_level_later_progression_rate": {
+          "count": 5,
+          "max": 0.16483516483516483,
+          "mean": 0.11320381875104514,
+          "median": 0.13513513513513514,
+          "min": 0.043478260869565216
+        },
+        "capture_level_ordered_rate": {
+          "count": 5,
+          "max": 0.7432432432432432,
+          "mean": 0.6546667497379641,
+          "median": 0.6923076923076923,
+          "min": 0.4715909090909091
+        },
+        "descriptive_pooled_latency_ms": {
+          "committed": {
+            "count": 58,
+            "max": 606.954,
+            "mean": 394.2504827586207,
+            "median": 381.161,
+            "min": 104.07600000000001
+          },
+          "finalized": {
+            "count": 58,
+            "max": 606.954,
+            "mean": 394.2504827586207,
+            "median": 381.161,
+            "min": 104.07600000000001
+          },
+          "voted": {
+            "count": 58,
+            "max": 391.916,
+            "mean": 132.23779310344827,
+            "median": 95.4185,
+            "min": 0.0
+          }
+        },
+        "descriptive_pooled_totals": {
+          "evaluable_episodes": 491,
+          "evaluable_later_progressions": 58,
+          "evaluable_not_observed": 186,
+          "evaluable_ordered": 305,
+          "later_progression_rate": 0.11812627291242363,
+          "ordered_rate": 0.6211812627291242,
+          "proposed_episodes": 3867,
+          "reentry_ambiguous_episodes": 3356,
+          "unique_proposed_keys": 1820
+        }
+      }
+    },
+    "minimum_followup_ms": 1000.0,
+    "per_capture": [
+      {
+        "capture": "kuru_ws_20260905T233039949275Z.json",
+        "captured_messages": 1109,
+        "modes": {
+          "price": {
+            "evaluable_episodes": 85,
+            "evaluable_later_progressions": 3,
+            "evaluable_not_observed": 20,
+            "evaluable_ordered": 65,
+            "latency_ms": {
+              "committed": {
+                "count": 3,
+                "max": 604.7249999999999,
+                "mean": 557.2203333333333,
+                "median": 538.413,
+                "min": 528.5229999999999
+              },
+              "finalized": {
+                "count": 3,
+                "max": 604.7249999999999,
+                "mean": 557.2203333333333,
+                "median": 538.413,
+                "min": 528.5229999999999
+              },
+              "voted": {
+                "count": 3,
+                "max": 360.282,
+                "mean": 300.051,
+                "median": 290.99199999999996,
+                "min": 248.879
+              }
+            },
+            "later_progression_rate": 0.03529411764705882,
+            "ordered_rate": 0.7647058823529411,
+            "proposed_episodes": 653,
+            "reentry_ambiguous_episodes": 566,
+            "unique_proposed_keys": 316
+          },
+          "price_quantity": {
+            "evaluable_episodes": 92,
+            "evaluable_later_progressions": 4,
+            "evaluable_not_observed": 25,
+            "evaluable_ordered": 67,
+            "latency_ms": {
+              "committed": {
+                "count": 4,
+                "max": 604.7249999999999,
+                "mean": 547.1134999999999,
+                "median": 533.468,
+                "min": 516.7929999999999
+              },
+              "finalized": {
+                "count": 4,
+                "max": 604.7249999999999,
+                "mean": 547.1134999999999,
+                "median": 533.468,
+                "min": 516.7929999999999
+              },
+              "voted": {
+                "count": 4,
+                "max": 360.282,
+                "mean": 285.0,
+                "median": 269.9355,
+                "min": 239.847
+              }
+            },
+            "later_progression_rate": 0.043478260869565216,
+            "ordered_rate": 0.7282608695652174,
+            "proposed_episodes": 657,
+            "reentry_ambiguous_episodes": 563,
+            "unique_proposed_keys": 323
+          }
+        },
+        "unique_U_within_capture": 146
+      },
+      {
+        "capture": "kuru_ws_20260905T233212584800Z.json",
+        "captured_messages": 1209,
+        "modes": {
+          "price": {
+            "evaluable_episodes": 82,
+            "evaluable_later_progressions": 10,
+            "evaluable_not_observed": 24,
+            "evaluable_ordered": 58,
+            "latency_ms": {
+              "committed": {
+                "count": 10,
+                "max": 605.509,
+                "mean": 326.6056,
+                "median": 255.07099999999997,
+                "min": 104.07600000000001
+              },
+              "finalized": {
+                "count": 10,
+                "max": 605.509,
+                "mean": 326.6056,
+                "median": 255.07099999999997,
+                "min": 104.07600000000001
+              },
+              "voted": {
+                "count": 10,
+                "max": 345.916,
+                "mean": 113.6754,
+                "median": 67.978,
+                "min": 0.0
+              }
+            },
+            "later_progression_rate": 0.12195121951219512,
+            "ordered_rate": 0.7073170731707317,
+            "proposed_episodes": 745,
+            "reentry_ambiguous_episodes": 660,
+            "unique_proposed_keys": 346
+          },
+          "price_quantity": {
+            "evaluable_episodes": 91,
+            "evaluable_later_progressions": 15,
+            "evaluable_not_observed": 28,
+            "evaluable_ordered": 63,
+            "latency_ms": {
+              "committed": {
+                "count": 15,
+                "max": 605.509,
+                "mean": 347.5826666666667,
+                "median": 260.35999999999996,
+                "min": 104.07600000000001
+              },
+              "finalized": {
+                "count": 15,
+                "max": 605.509,
+                "mean": 347.5826666666667,
+                "median": 260.35999999999996,
+                "min": 104.07600000000001
+              },
+              "voted": {
+                "count": 15,
+                "max": 345.916,
+                "mean": 107.19319999999999,
+                "median": 66.065,
+                "min": 0.0
+              }
+            },
+            "later_progression_rate": 0.16483516483516483,
+            "ordered_rate": 0.6923076923076923,
+            "proposed_episodes": 750,
+            "reentry_ambiguous_episodes": 655,
+            "unique_proposed_keys": 355
+          }
+        },
+        "unique_U_within_capture": 153
+      },
+      {
+        "capture": "kuru_ws_20260905T233345251807Z.json",
+        "captured_messages": 1132,
+        "modes": {
+          "price": {
+            "evaluable_episodes": 73,
+            "evaluable_later_progressions": 11,
+            "evaluable_not_observed": 17,
+            "evaluable_ordered": 56,
+            "latency_ms": {
+              "committed": {
+                "count": 11,
+                "max": 1130.64,
+                "mean": 510.1305454545455,
+                "median": 476.016,
+                "min": 244.131
+              },
+              "finalized": {
+                "count": 11,
+                "max": 1130.64,
+                "mean": 510.1305454545455,
+                "median": 476.016,
+                "min": 244.131
+              },
+              "voted": {
+                "count": 11,
+                "max": 316.88300000000004,
+                "mean": 142.7629090909091,
+                "median": 114.468,
+                "min": 0.0
+              }
+            },
+            "later_progression_rate": 0.1506849315068493,
+            "ordered_rate": 0.7671232876712328,
+            "proposed_episodes": 736,
+            "reentry_ambiguous_episodes": 659,
+            "unique_proposed_keys": 335
+          },
+          "price_quantity": {
+            "evaluable_episodes": 74,
+            "evaluable_later_progressions": 10,
+            "evaluable_not_observed": 19,
+            "evaluable_ordered": 55,
+            "latency_ms": {
+              "committed": {
+                "count": 10,
+                "max": 601.062,
+                "mean": 448.0796,
+                "median": 443.386,
+                "min": 244.131
+              },
+              "finalized": {
+                "count": 10,
+                "max": 601.062,
+                "mean": 448.0796,
+                "median": 443.386,
+                "min": 244.131
+              },
+              "voted": {
+                "count": 10,
+                "max": 316.88300000000004,
+                "mean": 157.03920000000002,
+                "median": 136.995,
+                "min": 0.0
+              }
+            },
+            "later_progression_rate": 0.13513513513513514,
+            "ordered_rate": 0.7432432432432432,
+            "proposed_episodes": 736,
+            "reentry_ambiguous_episodes": 658,
+            "unique_proposed_keys": 336
+          }
+        },
+        "unique_U_within_capture": 153
+      },
+      {
+        "capture": "kuru_ws_20260905T233517872935Z.json",
+        "captured_messages": 1243,
+        "modes": {
+          "price": {
+            "evaluable_episodes": 50,
+            "evaluable_later_progressions": 3,
+            "evaluable_not_observed": 14,
+            "evaluable_ordered": 36,
+            "latency_ms": {
+              "committed": {
+                "count": 3,
+                "max": 377.05,
+                "mean": 330.5226666666667,
+                "median": 307.259,
+                "min": 307.259
+              },
+              "finalized": {
+                "count": 3,
+                "max": 377.05,
+                "mean": 330.5226666666667,
+                "median": 307.259,
+                "min": 307.259
+              },
+              "voted": {
+                "count": 3,
+                "max": 138.93800000000002,
+                "mean": 130.1076666666667,
+                "median": 138.93800000000002,
+                "min": 112.447
+              }
+            },
+            "later_progression_rate": 0.06,
+            "ordered_rate": 0.72,
+            "proposed_episodes": 899,
+            "reentry_ambiguous_episodes": 845,
+            "unique_proposed_keys": 358
+          },
+          "price_quantity": {
+            "evaluable_episodes": 58,
+            "evaluable_later_progressions": 5,
+            "evaluable_not_observed": 21,
+            "evaluable_ordered": 37,
+            "latency_ms": {
+              "committed": {
+                "count": 5,
+                "max": 567.824,
+                "mean": 381.8116,
+                "median": 349.666,
+                "min": 307.259
+              },
+              "finalized": {
+                "count": 5,
+                "max": 567.824,
+                "mean": 381.8116,
+                "median": 349.666,
+                "min": 307.259
+              },
+              "voted": {
+                "count": 5,
+                "max": 276.181,
+                "mean": 145.1878,
+                "median": 138.93800000000002,
+                "min": 59.435
+              }
+            },
+            "later_progression_rate": 0.08620689655172414,
+            "ordered_rate": 0.6379310344827587,
+            "proposed_episodes": 900,
+            "reentry_ambiguous_episodes": 838,
+            "unique_proposed_keys": 366
+          }
+        },
+        "unique_U_within_capture": 170
+      },
+      {
+        "capture": "kuru_ws_20260905T233650736812Z.json",
+        "captured_messages": 1466,
+        "modes": {
+          "price": {
+            "evaluable_episodes": 135,
+            "evaluable_later_progressions": 18,
+            "evaluable_not_observed": 61,
+            "evaluable_ordered": 74,
+            "latency_ms": {
+              "committed": {
+                "count": 18,
+                "max": 606.954,
+                "mean": 389.097,
+                "median": 381.161,
+                "min": 178.39
+              },
+              "finalized": {
+                "count": 18,
+                "max": 606.954,
+                "mean": 389.097,
+                "median": 381.161,
+                "min": 178.39
+              },
+              "voted": {
+                "count": 18,
+                "max": 391.916,
+                "mean": 115.05655555555556,
+                "median": 0.0,
+                "min": 0.0
+              }
+            },
+            "later_progression_rate": 0.13333333333333333,
+            "ordered_rate": 0.5481481481481482,
+            "proposed_episodes": 814,
+            "reentry_ambiguous_episodes": 674,
+            "unique_proposed_keys": 403
+          },
+          "price_quantity": {
+            "evaluable_episodes": 176,
+            "evaluable_later_progressions": 24,
+            "evaluable_not_observed": 93,
+            "evaluable_ordered": 83,
+            "latency_ms": {
+              "committed": {
+                "count": 24,
+                "max": 606.954,
+                "mean": 378.10333333333335,
+                "median": 373.29949999999997,
+                "min": 151.905
+              },
+              "finalized": {
+                "count": 24,
+                "max": 606.954,
+                "mean": 378.10333333333335,
+                "median": 373.29949999999997,
+                "min": 151.905
+              },
+              "voted": {
+                "count": 24,
+                "max": 391.916,
+                "mean": 109.39845833333334,
+                "median": 0.0,
+                "min": 0.0
+              }
+            },
+            "later_progression_rate": 0.13636363636363635,
+            "ordered_rate": 0.4715909090909091,
+            "proposed_episodes": 824,
+            "reentry_ambiguous_episodes": 642,
+            "unique_proposed_keys": 440
+          }
+        },
+        "unique_U_within_capture": 159
+      }
+    ],
+    "sum_unique_U_within_captures": 781
+  },
+  "claim_boundary": {
+    "U_semantics_not_assumed": true,
+    "captures_not_assumed_statistically_independent": true,
+    "latencies_are_client_observed_first_seen_differences": true,
+    "no_finality_premium_claim": true,
+    "no_protocol_finality_latency_claim": true,
+    "no_trading_edge_claim": true,
+    "not_observed_not_classified_as_failure": true,
+    "pooled_rates_descriptive_only": true,
+    "quote_identity_not_order_identity": true,
+    "raw_source_captures_not_embedded_in_bundle": true,
+    "raw_source_captures_required_for_reproduction": true
+  },
+  "dataset_fingerprint_sha256": "a25f99463438853fbc4c27f7531cc1904e36ca4fb323f05405089d10d5727445",
+  "methodology": {
+    "capture_start_candidates_excluded_from_evaluable": true,
+    "episode_aware": true,
+    "identity_modes": [
+      "price_quantity",
+      "price"
+    ],
+    "minimum_followup_ms": 1000.0,
+    "reentry_ambiguous_excluded_from_evaluable": true,
+    "unresolved_short_followup_excluded": true
+  },
+  "schema_version": "phase0.quote_lineage_empirical_evidence.v1",
+  "sources": [
+    {
+      "captured_messages": 1109,
+      "file": "kuru_ws_20260905T233039949275Z.json",
+      "sha256": "58f438312459808d54dd8e423adcf7adf0e7f71f2dc49153a35d7aec5d67227e",
+      "unique_U_within_capture": 146
+    },
+    {
+      "captured_messages": 1209,
+      "file": "kuru_ws_20260905T233212584800Z.json",
+      "sha256": "f479bcf8f12a0b88f390834dda357283661c559e0beb12c9bd6fa2f8efd8abb9",
+      "unique_U_within_capture": 153
+    },
+    {
+      "captured_messages": 1132,
+      "file": "kuru_ws_20260905T233345251807Z.json",
+      "sha256": "43dee779f8b2049dda4f71aa4b75e6cd3ccbfd6674e7886a3b686b7fb743b532",
+      "unique_U_within_capture": 153
+    },
+    {
+      "captured_messages": 1243,
+      "file": "kuru_ws_20260905T233517872935Z.json",
+      "sha256": "95b7485f9c2e66ae2520424880dd6c469d5036bc0df7ba641103d0d5e7c6ab66",
+      "unique_U_within_capture": 170
+    },
+    {
+      "captured_messages": 1466,
+      "file": "kuru_ws_20260905T233650736812Z.json",
+      "sha256": "c831ffd505206bfd776cfc50830d4ebdcafb74d18e083f707973a50443071d59",
+      "unique_U_within_capture": 159
+    }
+  ]
+}

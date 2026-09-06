@@ -38,6 +38,14 @@ def _is_target_l2(record: dict) -> bool:
     )
 
 
+
+def is_target_l2_record(
+    record: dict,
+) -> bool:
+    """Public wrapper for the canonical Phase 1 target-L2 predicate."""
+    return _is_target_l2(record)
+
+
 def _valid_monotonic(value) -> bool:
     return (
         isinstance(value, int)

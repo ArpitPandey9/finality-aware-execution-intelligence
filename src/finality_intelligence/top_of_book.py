@@ -87,6 +87,16 @@ def _derive_kuru_state(state_view: dict) -> dict:
     }
 
 
+
+def derive_kuru_state(
+    state_view: dict,
+) -> dict:
+    """Public wrapper for canonical Phase 1 Kuru top derivation."""
+    return _derive_kuru_state(
+        state_view
+    )
+
+
 def _derive_coinbase_reference(reference: dict) -> dict:
     if not isinstance(reference, dict):
         raise ValueError("Coinbase reference must be a mapping.")

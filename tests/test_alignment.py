@@ -34,6 +34,7 @@ def cb_record(
         "received_at_utc": "2026-09-06T00:00:00+00:00",
         "received_monotonic_ns": ns,
         "sequence_num": seq,
+        "target_product_id": "MON-USD",
         "book_top_after": top(),
         "crossed_or_locked": False,
     }
@@ -65,6 +66,7 @@ def capture(
         "sources": {
             "kuru": {
                 "error": None,
+                "market": "MON_USDC",
                 "records": [
                     kuru_record(ns, index + 1)
                     for index, ns in enumerate(kuru_times)
@@ -72,6 +74,8 @@ def capture(
             },
             "coinbase": {
                 "error": None,
+                "market": "MON-USD",
+                "channel": "level2",
                 "records": coinbase,
             },
         },
@@ -213,6 +217,92 @@ class TestPointInTimeAlignment(unittest.TestCase):
                 capture_id="capture-a",
                 max_age_ms=1.5,
             )
+
+
+    def test_kuru_market_mismatch_is_insufficient_evidence(self):
+        source = capture(
+            [100],
+            [cb_record(90, 0, snapshot=True)],
+        )
+        source["sources"]["kuru"]["market"] = "WRONG_MARKET"
+
+        result = align_dual_capture(
+            source,
+            capture_id="capture-a",
+            max_age_ms=1000,
+        )
+
+        self.assertEqual(
+            result["rows"][0]["status"],
+            INSUFFICIENT_SOURCE_EVIDENCE,
+        )
+        self.assertIn(
+            "KURU_MARKET_MISMATCH",
+            result["source_evidence_reasons"],
+        )
+
+    def test_coinbase_market_mismatch_is_insufficient_evidence(self):
+        source = capture(
+            [100],
+            [cb_record(90, 0, snapshot=True)],
+        )
+        source["sources"]["coinbase"]["market"] = "WRONG-MARKET"
+
+        result = align_dual_capture(
+            source,
+            capture_id="capture-a",
+            max_age_ms=1000,
+        )
+
+        self.assertEqual(
+            result["rows"][0]["status"],
+            INSUFFICIENT_SOURCE_EVIDENCE,
+        )
+        self.assertIn(
+            "COINBASE_MARKET_MISMATCH",
+            result["source_evidence_reasons"],
+        )
+
+    def test_coinbase_channel_mismatch_is_insufficient_evidence(self):
+        source = capture(
+            [100],
+            [cb_record(90, 0, snapshot=True)],
+        )
+        source["sources"]["coinbase"]["channel"] = "ticker"
+
+        result = align_dual_capture(
+            source,
+            capture_id="capture-a",
+            max_age_ms=1000,
+        )
+
+        self.assertEqual(
+            result["rows"][0]["status"],
+            INSUFFICIENT_SOURCE_EVIDENCE,
+        )
+        self.assertIn(
+            "COINBASE_CHANNEL_MISMATCH",
+            result["source_evidence_reasons"],
+        )
+
+    def test_coinbase_target_product_mismatch_is_insufficient_evidence(self):
+        record = cb_record(90, 0, snapshot=True)
+        record["target_product_id"] = "BTC-USD"
+
+        result = align_dual_capture(
+            capture([100], [record]),
+            capture_id="capture-a",
+            max_age_ms=1000,
+        )
+
+        self.assertEqual(
+            result["rows"][0]["status"],
+            INSUFFICIENT_SOURCE_EVIDENCE,
+        )
+        self.assertIn(
+            "COINBASE_TARGET_PRODUCT_MISMATCH",
+            result["source_evidence_reasons"],
+        )
 
 
 if __name__ == "__main__":

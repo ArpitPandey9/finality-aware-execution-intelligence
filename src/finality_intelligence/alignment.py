@@ -6,6 +6,10 @@ from decimal import Decimal, InvalidOperation
 
 SCHEMA_VERSION = "phase1.point_in_time_alignment.v1"
 
+EXPECTED_KURU_MARKET = "MON_USDC"
+EXPECTED_COINBASE_MARKET = "MON-USD"
+EXPECTED_COINBASE_CHANNEL = "level2"
+
 ALIGNED = "ALIGNED"
 NO_PRIOR_REFERENCE = "NO_PRIOR_REFERENCE"
 STALE_REFERENCE = "STALE_REFERENCE"
@@ -54,6 +58,15 @@ def _validate_source_capture(capture: dict) -> tuple[list[str], list[dict], list
     sources = capture.get("sources", {})
     kuru_source = sources.get("kuru", {})
     coinbase_source = sources.get("coinbase", {})
+
+    if kuru_source.get("market") != EXPECTED_KURU_MARKET:
+        reasons.append("KURU_MARKET_MISMATCH")
+
+    if coinbase_source.get("market") != EXPECTED_COINBASE_MARKET:
+        reasons.append("COINBASE_MARKET_MISMATCH")
+
+    if coinbase_source.get("channel") != EXPECTED_COINBASE_CHANNEL:
+        reasons.append("COINBASE_CHANNEL_MISMATCH")
 
     if kuru_source.get("error") is not None:
         reasons.append("KURU_SOURCE_ERROR")
@@ -109,6 +122,10 @@ def _validate_source_capture(capture: dict) -> tuple[list[str], list[dict], list
             reasons.append("FIRST_TARGET_NOT_SNAPSHOT")
 
         for _, record in target_records:
+            if record.get("target_product_id") != EXPECTED_COINBASE_MARKET:
+                reasons.append("COINBASE_TARGET_PRODUCT_MISMATCH")
+                break
+
             if not _valid_monotonic(
                 record.get("received_monotonic_ns")
             ):

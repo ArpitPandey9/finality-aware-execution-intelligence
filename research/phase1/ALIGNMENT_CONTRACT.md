@@ -70,6 +70,19 @@ Only Coinbase target Level-2 records produced after a valid snapshot baseline an
 
 Capture-level Coinbase sequence-integrity or reconstruction failures must cause the source evidence to be reviewed rather than silently accepted.
 
+## Source Identity Validation
+
+Phase 1 alignment is defined only for the intended dual-market capture contract:
+
+- the Kuru source `market` must equal `MON_USDC`;
+- the Coinbase source `market` must equal `MON-USD`;
+- the Coinbase source `channel` must equal `level2`;
+- every eligible Coinbase target Level-2 record must carry `target_product_id` equal to `MON-USD`.
+
+A mismatch in any of these identity fields is classified as insufficient source evidence and must not produce an `ALIGNED` or `STALE_REFERENCE` observation.
+
+These checks establish source identity only. They do not assert economic equivalence between Kuru `MON_USDC` and Coinbase `MON-USD`, remove USD/USDC basis risk, or convert an observed cross-venue difference into an executable trading result.
+
 ## Required Alignment Output
 
 Each aligned observation should preserve at minimum:
@@ -107,6 +120,6 @@ No aligned price difference is automatically an arbitrage, executable spread, tr
 
 ## Phase 1 Gate
 
-Alignment methodology passes only when tests demonstrate deterministic backward as-of selection, no future-reference use, explicit staleness handling, capture-bound monotonic-clock use, and preservation of insufficient evidence.
+Alignment methodology passes only when tests demonstrate deterministic backward as-of selection, no future-reference use, explicit staleness handling, capture-bound monotonic-clock use, source market/product/channel identity validation, and preservation of insufficient evidence.
 
 Only after this gate passes should state-conditioned spread, depth, slippage, or cross-venue divergence metrics be added.

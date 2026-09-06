@@ -8,13 +8,15 @@ Research system for studying how observable on-chain order-book liquidity and si
 
 **Phase 1 — Point-in-Time Cross-Venue Execution Intelligence: COMPLETE**
 
-**Current full repository test suite: 217 passing tests**
+**Phase 2 — Pre-Registered Temporal Market Response: COMPLETE**
+
+**Current full repository test suite: 264 passing tests**
 
 The project has established a provenance-bound, anti-lookahead research pipeline spanning Kuru / Monad state-specific order books and reconstructed Coinbase MON-USD Level2 books.
 
 No trading-performance, arbitrage, alpha, profitability, execution-probability, venue-superiority, or causal-finality claim is made.
 
-**Next research gate:** pre-specify temporal market-response and adverse-selection methodology before inspecting future outcomes.
+**Latest research result:** Phase 2 primary hypothesis support was **NOT ESTABLISHED**. No post-hoc rescue rule is promoted from the frozen dataset.
 
 ## Research Question
 
@@ -107,6 +109,73 @@ Finalized and committed execution/depth summaries were exactly equal throughout 
 
 See [`research/phase1/PHASE1_RESULT.md`](research/phase1/PHASE1_RESULT.md) for the Phase 1 conclusion.
 
+## Phase 2 — Pre-Registered Temporal Market Response
+
+Phase 2 moves from static point-in-time comparison to a pre-registered
+post-observation outcome study.
+
+The research question is whether the simultaneous Kuru
+proposed-versus-finalized midpoint contrast observed at a four-state panel is
+descriptively associated with subsequent Coinbase MON-USD midpoint movement.
+
+The methodology was frozen before inspection of the real economic outcomes.
+
+Pre-result methodology commit:
+
+`9c94b55a535006d7d5d79d6fcd277c17ca7aaaa6`
+
+Frozen five-capture dataset fingerprint:
+
+`0c709499d9d16b48080b2fea82ccee85ef4747284e51493324856c954bc13baa`
+
+Deterministic real-report SHA256:
+
+`e84937515281be0ecc3e35843a41b3a768ce026d7cb728d4b63fefb3e9bcd90d`
+
+The independently generated real reports were byte-identical.
+
+The primary baseline-freshness definition is **250 ms**. The pre-specified
+primary future horizons are:
+
+- 250 ms;
+- 1000 ms;
+- 5000 ms.
+
+A 10000 ms horizon is retained only as an extended sensitivity.
+
+### Temporal Result
+
+**Primary hypothesis support: NOT ESTABLISHED.**
+
+For the primary 250 ms baseline-freshness population, pooled Coinbase forward
+midpoint-return medians and pooled directional-concordance medians were
+**0.00 bps** at each of the 250 ms, 1000 ms, and 5000 ms primary horizons.
+
+At the 250 ms and 1000 ms horizons, all five separate capture windows also had
+zero median forward return and zero median directional concordance.
+
+The deterministic within-capture non-overlapping sensitivity likewise had
+zero median forward return and zero median directional concordance at all
+three primary horizons.
+
+The pre-specified 10000 ms extended horizon showed a small positive pooled
+median, but that result did not survive the non-overlapping sensitivity. It is
+therefore retained as mixed sensitivity evidence rather than promoted as a
+primary finding.
+
+This result does not establish that Kuru state information has no economic
+content or that one venue never responds after the other. It establishes only
+that the specific pre-registered state-conditioned directional relationship
+was not robustly supported in this frozen five-capture dataset.
+
+No post-hoc horizon, state-gap threshold, subgroup, predictive rule, alpha
+claim, arbitrage claim, win-rate claim, or causal-finality interpretation is
+promoted from the Phase 2 result.
+
+See
+[`research/phase2/TEMPORAL_OUTCOME_RESULT_NOTE.md`](research/phase2/TEMPORAL_OUTCOME_RESULT_NOTE.md)
+for the canonical Phase 2 empirical result.
+
 ## Evidence Discipline
 
 The system separates observation from inference.
@@ -147,7 +216,19 @@ Raw observations are preserved before transformation. Missing or insufficient ev
 - [`CROSS_VENUE_EXECUTION_CONTRACT.md`](research/phase1/CROSS_VENUE_EXECUTION_CONTRACT.md) — final PIT cross-venue methodology.
 - [`CROSS_VENUE_EXECUTION_RESULT_NOTE.md`](research/phase1/CROSS_VENUE_EXECUTION_RESULT_NOTE.md) — final cross-venue empirical result.
 
+### Phase 2
+
+- [`TEMPORAL_OUTCOME_CONTRACT.md`](research/phase2/TEMPORAL_OUTCOME_CONTRACT.md) — pre-registered temporal-outcome methodology.
+- [`TEMPORAL_OUTCOME_RESULT_NOTE.md`](research/phase2/TEMPORAL_OUTCOME_RESULT_NOTE.md) — canonical Phase 2 empirical result and research decision.
+
 ## Core Implementation
+
+Phase 2 temporal components:
+
+- `temporal_outcome.py` — frozen-horizon, point-in-time future-outcome construction and explicit right-censoring;
+- `temporal_aggregation.py` — pooled, capture-level, sign, and deterministic non-overlapping temporal summaries;
+- `scripts/analyze_temporal_outcomes.py` — provenance-bound deterministic Phase 2 report orchestration.
+
 
 Key modules include:
 

@@ -127,3 +127,81 @@ A read-only Monad mainnet call to the Kuru Router `verifiedMarket` mapping for t
 - maker fee parameter: `0`
 
 These values establish the market's on-chain configuration. The REST numeric representation was verified separately through the same-block comparison documented above.
+
+## Coinbase WebSocket Reconstruction Semantics
+
+The Phase 0 WebSocket path uses Coinbase `MON-USD` Level-2 data as an independent centralized-market reference.
+
+Observed and preserved fields include:
+
+- wrapper `channel`
+- wrapper `timestamp`
+- wrapper `sequence_num`
+- target event type: `snapshot` or `update`
+- target `product_id`
+- update `side`
+- update `event_time`
+- `price_level`
+- `new_quantity`
+- local `received_at_utc`
+- local `received_monotonic_ns`
+
+The local reconstruction treats `new_quantity` as the current quantity for the supplied price level. A zero quantity removes that level from the local book.
+
+Observed side labels are `bid` and `offer`. Unknown side labels are rejected rather than inferred.
+
+### Snapshot baseline rule
+
+A target `snapshot` establishes a fresh local reconstruction baseline.
+
+The Phase 0 dual-capture gate requires:
+
+- the first target Coinbase Level-2 message to include a snapshot;
+- zero target Level-2 messages before that snapshot;
+- a valid reconstructed bid and offer after the snapshot;
+- no crossed or locked reconstructed target message;
+- no missing wrapper sequence values;
+- no non-`+1` transition in the complete received wrapper sequence.
+
+A capture that receives target updates before the initial target snapshot is classified as REVIEW.
+
+### Sequence interpretation
+
+Coinbase sequence integrity is evaluated across all received wrapper messages preserved by the collector.
+
+Level-2-only sequence values are not required to advance by exactly one because a non-Level-2 wrapper message can occupy an intermediate sequence value.
+
+Therefore, an L2-only sequence delta greater than one is descriptive and is not by itself classified as missing market-data evidence.
+
+## Dual-WebSocket Capture Semantics
+
+The dual collector acquires Kuru and Coinbase streams concurrently in one local process.
+
+Each target observation receives:
+
+- a UTC client receive timestamp; and
+- a same-process monotonic receive timestamp.
+
+The monotonic clock provides a local ordering basis for later point-in-time alignment work. It does not synchronize Kuru and Coinbase exchange clocks.
+
+### Target-message-envelope overlap
+
+Phase 0 reports the overlap between intervals bracketed by the first and last locally received target messages from each source.
+
+This quantity is stored as `target_message_envelope_overlap_seconds`.
+
+It demonstrates that both target streams were observed during an overlapping local acquisition interval.
+
+It is not interpreted as venue latency, network latency, Monad consensus latency, protocol-finality latency, clock synchronization, or execution advantage.
+
+The first-target receive skew is likewise a client-observed acquisition quantity only.
+
+## Phase 0 Capture Boundary
+
+Kuru `MON_USDC` and Coinbase `MON-USD` remain distinct markets.
+
+USD/USDC basis is not modeled during Phase 0.
+
+No cross-venue difference observed during acquisition is classified as a trading edge, arbitrage opportunity, finality premium, or profitability result.
+
+Phase 1 must define point-in-time alignment, staleness, and basis controls before economic interpretation.

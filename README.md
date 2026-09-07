@@ -10,19 +10,23 @@ Research system for studying how observable on-chain order-book liquidity and si
 
 **Phase 2 — Pre-Registered Temporal Market Response: COMPLETE**
 
-**Current full repository test suite: 264 passing tests**
+**Phase 3 — Pre-Registered State-Conditioned Market Instability: COMPLETE**
+
+**Current full repository test suite: 297 passing tests**
 
 The project has established a provenance-bound, anti-lookahead research pipeline spanning Kuru / Monad state-specific order books and reconstructed Coinbase MON-USD Level2 books.
 
-No trading-performance, arbitrage, alpha, profitability, execution-probability, venue-superiority, or causal-finality claim is made.
+No trading-performance, arbitrage, alpha, profitability, execution-probability, venue-superiority, predictive, or causal-finality claim is made.
 
-**Latest research result:** Phase 2 primary hypothesis support was **NOT ESTABLISHED**. No post-hoc rescue rule is promoted from the frozen dataset.
+**Latest research result:** Phase 3 observed **ROBUST DIRECTIONAL SUPPORT** under its pre-registered descriptive association rule: greater simultaneous Kuru proposed-versus-finalized midpoint disagreement magnitude was associated with greater subsequent absolute Coinbase MON-USD midpoint movement magnitude in the frozen confirmatory dataset. This is a descriptive association result, not evidence of causality, prediction, alpha, or a realizable trading edge.
 
 ## Research Question
 
 Kuru exposes order-book views for Monad proposed, voted, finalized, and committed states.
 
-The project studies whether observable execution conditions differ across those simultaneous state views, how those conditions compare with an external Coinbase market reference, and—subject to a future pre-specified design—how market conditions evolve after those observations.
+The project studies whether observable execution conditions differ across those simultaneous state views, how those conditions compare with an external Coinbase market reference, and how pre-specified state-conditioned observations are descriptively associated with subsequent external-market behavior.
+
+Phase 2 studied a signed directional relationship. Phase 3 separately studies whether the magnitude of simultaneous proposed-versus-finalized disagreement is associated with the magnitude of subsequent Coinbase price movement.
 
 Current markets:
 
@@ -176,6 +180,108 @@ See
 [`research/phase2/TEMPORAL_OUTCOME_RESULT_NOTE.md`](research/phase2/TEMPORAL_OUTCOME_RESULT_NOTE.md)
 for the canonical Phase 2 empirical result.
 
+## Phase 3 — Pre-Registered State-Conditioned Market Instability
+
+Phase 3 asks a new confirmatory question after the Phase 2 directional
+relationship was not established:
+
+> When simultaneous Kuru proposed and finalized state views exhibit greater
+> midpoint disagreement, is that descriptively associated with greater
+> subsequent absolute Coinbase MON-USD midpoint movement?
+
+Phase 3 is not a post-hoc rescue of Phase 2. Its methodology and collection
+protocol were frozen before fresh confirmatory economic outcomes were inspected.
+
+Methodology preregistration commit:
+
+`a834e149e309fcae0e90ce3b213d5318aabf5e7c`
+
+Confirmatory collection implementation commit:
+
+`5f0c7c0e45f59d4f9aad1347e1d23065a49c526d`
+
+Confirmatory dataset provenance commit:
+
+`d8393672825722e544dc66e6256e2f4d844bc1d8`
+
+Analysis implementation commit:
+
+`9c9eaec151b094c8cbecae5e88ff0d4f3cd20621`
+
+Result commit:
+
+`bfcdae7a2ec94ad80ec4c4faf0987462d52563d0`
+
+The frozen confirmatory dataset contains **10 qualifying captures**, selected
+under the pre-registered first-ten chronological technical-PASS rule. The
+preserved REVIEW attempt was not promoted into the confirmatory dataset.
+
+Ordered confirmatory dataset fingerprint:
+
+`ff29993a22743674edf13363957e7e5386b338d4e599027b4006089991f382e2`
+
+Deterministic real-report SHA256:
+
+`d97f3cbf4de3ba2b71a98a2bc06b76d81fa8efb9a185fb4e3f875fb50973d378`
+
+Two separate executions of the frozen analysis implementation against the same
+frozen ten-capture input sequence produced byte-identical report hashes.
+
+### Market-Instability Result
+
+**Primary relationship status: ROBUST DIRECTIONAL SUPPORT OBSERVED.**
+
+The primary population uses the pre-registered **250 ms** baseline-freshness
+threshold.
+
+| Future horizon | Evaluable pairs | Pooled Spearman rho | Defined capture correlations | Median capture rho | Non-overlap Spearman rho | Supportive |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| 250 ms | 27,940 | 0.2047319146 | 10 / 10 | 0.1760937618 | 0.1238017693 | Yes |
+| 1000 ms | 27,821 | 0.1472375089 | 10 / 10 | 0.1463359276 | 0.1114146501 | Yes |
+| 5000 ms | 26,920 | 0.1129767629 | 10 / 10 | 0.0059554587 | 0.1142676897 | Yes |
+
+All three primary horizons satisfied the frozen descriptive support rule. The
+pre-registered cross-horizon requirement required support at at least two of the
+three primary horizons.
+
+The 10000 ms extended horizon was also directionally supportive under the
+primary 250 ms freshness population, but it is an extended sensitivity and does
+not contribute to the primary classification.
+
+Sensitivity evidence is not uniformly supportive across every specification.
+At the **1000 ms freshness / 5000 ms horizon** cell, the deterministic
+non-overlapping Spearman correlation was:
+
+`-0.0207678706`
+
+That sensitivity cell therefore did not satisfy the individual support rule.
+
+The observed Phase 3 associations are positive but modest. In particular, the
+median capture-level Spearman correlation at the 5000 ms primary horizon was
+approximately `0.006`.
+
+The Phase 3 result does **not** establish:
+
+- causality;
+- that Kuru leads Coinbase;
+- forecast skill or prediction;
+- alpha or arbitrage;
+- profitable execution or realized PnL;
+- a finality premium;
+- protocol-finality latency;
+- statistical independence of overlapping observations.
+
+No p-values, confidence intervals, regressions, or post-hoc exposure thresholds
+were introduced for the initial confirmatory result.
+
+See
+[`research/phase3/MARKET_INSTABILITY_CONTRACT.md`](research/phase3/MARKET_INSTABILITY_CONTRACT.md)
+for the pre-registered methodology,
+[`research/phase3/CONFIRMATORY_DATASET_PROVENANCE.md`](research/phase3/CONFIRMATORY_DATASET_PROVENANCE.md)
+for the frozen dataset provenance, and
+[`research/phase3/MARKET_INSTABILITY_RESULT.md`](research/phase3/MARKET_INSTABILITY_RESULT.md)
+for the canonical empirical result.
+
 ## Evidence Discipline
 
 The system separates observation from inference.
@@ -221,6 +327,12 @@ Raw observations are preserved before transformation. Missing or insufficient ev
 - [`TEMPORAL_OUTCOME_CONTRACT.md`](research/phase2/TEMPORAL_OUTCOME_CONTRACT.md) — pre-registered temporal-outcome methodology.
 - [`TEMPORAL_OUTCOME_RESULT_NOTE.md`](research/phase2/TEMPORAL_OUTCOME_RESULT_NOTE.md) — canonical Phase 2 empirical result and research decision.
 
+### Phase 3
+
+- [`MARKET_INSTABILITY_CONTRACT.md`](research/phase3/MARKET_INSTABILITY_CONTRACT.md) — pre-registered Phase 3 market-instability methodology and confirmatory collection protocol.
+- [`CONFIRMATORY_DATASET_PROVENANCE.md`](research/phase3/CONFIRMATORY_DATASET_PROVENANCE.md) — frozen ten-capture confirmatory dataset provenance and integrity binding.
+- [`MARKET_INSTABILITY_RESULT.md`](research/phase3/MARKET_INSTABILITY_RESULT.md) — canonical Phase 3 confirmatory empirical result and claim boundaries.
+
 ## Core Implementation
 
 Phase 2 temporal components:
@@ -229,6 +341,12 @@ Phase 2 temporal components:
 - `temporal_aggregation.py` — pooled, capture-level, sign, and deterministic non-overlapping temporal summaries;
 - `scripts/analyze_temporal_outcomes.py` — provenance-bound deterministic Phase 2 report orchestration.
 
+
+Phase 3 market-instability components:
+
+- `market_instability.py` — transforms canonical temporal rows into the frozen absolute proposed-finalized disagreement exposure and absolute Coinbase forward-movement outcome;
+- `market_instability_aggregation.py` — deterministic average-rank Spearman association, explicit undefined-correlation handling, capture-level robustness, and non-overlapping sensitivity;
+- `scripts/analyze_market_instability.py` — frozen-dataset-bound deterministic Phase 3 confirmatory report orchestration.
 
 Key modules include:
 
